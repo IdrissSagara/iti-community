@@ -5,6 +5,7 @@
       <nz-form-control>
         <input class="ant-input" type="text" name="username" id="username" [(ngModel)]="model.username"
           #username="ngModel">
+        <div *ngIf="checkUserExiste" style="color: red">Cet utilisateur existe déjà</div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -20,6 +21,7 @@
       <nz-form-control>
         <input class="ant-input" type="password" name="confirm-password" id="confirm-password"
           [(ngModel)]="model.confirmPassword" #confirm="ngModel">
+        <div *ngIf="passwordIsNotEquals" style="color: red">Les mots de passe ne concorde pas</div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>

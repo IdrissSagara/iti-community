@@ -1,17 +1,18 @@
 <div class="login">
   <form nz-form nzLayout="vertical" #f="ngForm" (submit)="submit()">
     <nz-form-item>
-      <nz-form-label nzFor="username">Username</nz-form-label>
+      <nz-form-label nzFor="username"><label class="requis"> Username</label></nz-form-label>
       <nz-form-control>
         <input #username="ngModel" [(ngModel)]="model.username" class="ant-input" id="username" name="username"
-               type="text">
+               required type="text">
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzFor="password">Mot de passe</nz-form-label>
+      <nz-form-label nzFor="password"><label class="requis"> Mot de passe</label></nz-form-label>
       <nz-form-control>
+
         <input #password="ngModel" [(ngModel)]="model.password" class="ant-input" id="password" name="password"
-               type="password">
+               required type="password">
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
