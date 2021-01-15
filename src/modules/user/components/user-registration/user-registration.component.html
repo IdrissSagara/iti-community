@@ -2,26 +2,24 @@
   <form nz-form nzLayout="vertical" #f="ngForm" (ngSubmit)="submit()">
     <nz-form-item>
       <nz-form-label nzFor="username">Username</nz-form-label>
-      <nz-form-control>
+      <nz-form-control  nzErrorTip="Veullez entrer un nom d'utilisateur, s'il vous plait!">
         <input class="ant-input" type="text" name="username" id="username" [(ngModel)]="model.username"
-          #username="ngModel">
-        <div *ngIf="checkUserExiste" style="color: red">Cet utilisateur existe déjà</div>
+          #username="ngModel" placeholder="Ex : King39"  required>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label nzFor="password">Mot de passe</nz-form-label>
-      <nz-form-control>
+      <nz-form-control nzErrorTip="Veullez entrer un mot de passe, s'il vous plait!" >
         <input class="ant-input" type="password" name="password" id="password" [(ngModel)]="model.password"
-          #password="ngModel">
+          #password="ngModel" required>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label nzFor="confirm-password">Confirmation du mot de passe</nz-form-label>
-      <nz-form-control>
+      <nz-form-control  nzErrorTip="Veullez confirmer votre mot de passe, s'il vous plait!">
         <input class="ant-input" type="password" name="confirm-password" id="confirm-password"
-          [(ngModel)]="model.confirmPassword" #confirm="ngModel">
-        <div *ngIf="passwordIsNotEquals" style="color: red">Les mots de passe ne concorde pas</div>
+          [(ngModel)]="model.confirmPassword" #confirm="ngModel" required>        
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
