@@ -3,20 +3,15 @@
     <nz-form-item>
       <nz-form-label nzFor="username">Username</nz-form-label>
       <nz-form-control>
-        <!--
-          TODO Ajouter l'input pour username avec le data-binding approprié
-          <input class="ant-input" type="text" name="username" id="username" #username="ngModel">
-         -->
-
+        <input #username="ngModel" [(ngModel)]="model.username" class="ant-input" id="username" name="username"
+               type="text">
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label nzFor="password">Mot de passe</nz-form-label>
       <nz-form-control>
-        <!--
-          TODO Ajouter l'input pour password avec le data-binding approprié
-          <input class="ant-input" type="password" name="password" id="password" #password="ngModel">
-         -->
+        <input #password="ngModel" [(ngModel)]="model.password" class="ant-input" id="password" name="password"
+               type="password">
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -29,5 +24,5 @@
   <p class="divider">Pas encore enregistré ?</p>
 
   <!-- TODO Rediriger sur la page de login au clic sur le bouton -->
-  <button class="register-button" nz-button nzType="primary">Créer un compte</button>
+  <button (click)="goToRegistration()" class="register-button" nz-button nzType="primary">Créer un compte</button>
 </div>

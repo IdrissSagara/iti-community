@@ -32,7 +32,10 @@ export class UserRegistrationComponent implements OnInit {
 
     // TODO  Vérifier que la confirmation de mot de passe correspond au mot de passe
     if (this.form.form.invalid || this.model.password !== this.model.confirmPassword) {
+      console.log('Les 2 mot de passe ne concorde pas');
       return;
+    } else {
+      this.userService.register(this.model.username, this.model.password);
     }
 
     // TODO Enregistrer l'utilisateur via le UserService
@@ -41,5 +44,6 @@ export class UserRegistrationComponent implements OnInit {
 
   goToLogin() {
     // TODO rediriger l'utilisateur sur "/splash/login"
+    this.router.navigate(['/splash/login']);
   }
 }
