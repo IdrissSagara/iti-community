@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   goToRegistration() {
     // TODO naviguer vers "/splash/register"
+    this.router.navigate(['/splash/register']);
   }
 
   submit() {
@@ -41,13 +42,12 @@ export class LoginComponent implements OnInit {
     if (this.ngForm.form.invalid) {
       return;
     }
-
     try {
       // TODO vérifier le résultat de l'authentification. Rediriger sur "/" en cas de succès ou afficher une erreur en cas d'échec
       await this.authService.authenticate(this.model.username, this.model.password);
-
+      this.router.navigate(['/']);
     } catch (e) {
-      this.nzMessageService.error("Une erreur est survenue. Veuillez réessayer plus tard");
+      this.nzMessageService.error('Une erreur est survenue. Veuillez réessayer plus tard');
     }
   }
 }
