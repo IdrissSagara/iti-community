@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import { FeedStore } from 'src/modules/feed/feed.store';
 import { Room } from '../../room.model';
 import { RoomStore } from '../../room.store';
@@ -17,7 +17,10 @@ export class RoomMenuComponent implements OnInit {
 
   rooms: Room[];
 
-  constructor(private feedStore: FeedStore, private queries: RoomQueries, private roomSocketService: RoomSocketService) {
+
+  constructor(private feedStore: FeedStore, private queries: RoomQueries, private route: ActivatedRoute,
+              private roomService: RoomService, private router: Router, private roomSocketService: RoomSocketService) {
+
     this.roomId$ = feedStore.roomId$;
     this.rooms = [];
   }
@@ -28,5 +31,8 @@ export class RoomMenuComponent implements OnInit {
 
   goToRoom(room: Room) {
     // TODO naviguer vers app/[id de la room]
+    console.log(room);
+    this.router.navigate([room.id]);
   }
+
 }

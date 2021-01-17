@@ -16,11 +16,10 @@ import { RoomStore } from './room.store';
 import { RoomService } from './services/room.service';
 import { RoomComponent } from './components/room/room.component';
 import { FeedModule } from '../feed/feed.module';
-import { InputModule } from '../input/input.module';
-import { HttpRoomCommands } from './services/plateform/http/room.commands.http';
-import { HttpRoomQueries } from './services/plateform/http/room.queries.http';
-import { RoomSocketService } from './services/room.socket.service';
 
+import {InputModule} from '../input/input.module';
+import {RouterModule} from '@angular/router';
+import {RoomSocketService} from './services/room.socket.service';
 @NgModule({
   declarations: [RoomMenuComponent, RoomCreateModalComponent, RoomComponent],
   exports: [RoomMenuComponent, RoomComponent],
@@ -45,7 +44,8 @@ import { RoomSocketService } from './services/room.socket.service';
     NzIconModule,
     NzSelectModule,
     FeedModule,
-    InputModule
+    InputModule,
+    RouterModule
   ]
 })
 export class RoomModule { }
