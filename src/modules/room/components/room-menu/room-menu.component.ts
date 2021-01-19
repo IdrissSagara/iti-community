@@ -26,13 +26,37 @@ export class RoomMenuComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.rooms = await this.queries.getAll();
+     //===================================================
+    // On récupere le dernier room visiter.
+    //===================================================
+    let lastRoom = localStorage.getItem('LastRoomSee');
+    this.rooms = await this.queries.getAll();    
+
+    var roomSee  =  this.rooms.find(w=>w.id===lastRoom);
+    
+    if(roomSee == undefined){
+      this.goToRoom(this.rooms[0]);
+    }else{
+      this.goToRoom(roomSee);
+    }
   }
 
   goToRoom(room: Room) {
+    //===================================================
+    // Sauvegarde le dernier room consulter.
+    //===================================================
+    localStorage.setItem('LastRoomSee', room.id);
     // TODO naviguer vers app/[id de la room]
-    console.log(room);
-    this.router.navigate([room.id]);
+    this.router.navigate([`/${room.id}`]);
   }
+
+  /**
+   * Methode qui rajoute un nouvel room dans la liste.
+   * @param room 
+   */
+  RefreshRooms(room: Room){
+    this.rooms.push(room);
+  }
+  
 
 }

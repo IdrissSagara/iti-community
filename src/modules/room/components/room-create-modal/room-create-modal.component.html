@@ -1,10 +1,18 @@
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Nouvelle room" (nzOnCancel)="onCancel()" (nzOnOk)="onOk()">
-  <form nz-form nzLayout="vertical" #f="ngForm">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Nouvelle room" (nzOnCancel)="onCancel()" (nzOnOk)="onOk()" [nzOkLoading]="isLoading">
+  <form nz-form nzLayout="vertical" #f="ngForm" (ngSubmit)="CreateRoom()">
     <!--TODO-->
     <nz-form-item>
-      <nz-form-label nzFor="name">Type</nz-form-label>
+      <nz-form-label nzFor="name" nzRequired>Nom de la room</nz-form-label>
+      <nz-form-control nzErrorTip="Nom obligatoire" nzValidateStatus="success">
+        <input class="ant-input" type="text" name="name" #name="ngModel" id="name"  [(ngModel)]="model.name" required placeholder="Ex: Sofa">
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label nzFor="type" nzRequired>Type</nz-form-label>
       <nz-form-control nzErrorTip="Type obligatoire">
-        <nz-select [(ngModel)]="model.type" name="type" required>
+        <nz-select [(ngModel)]="model.type" name="type" #type="ngModel" required>
           <nz-option nzValue="text" nzLabel="Libre"></nz-option>
         </nz-select>
       </nz-form-control>

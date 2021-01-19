@@ -19,6 +19,7 @@ export class RoomService {
         })
         return room;
     }
+    
 
     async fetch(): Promise<void> {
         const rooms = await this.queries.getAll();
