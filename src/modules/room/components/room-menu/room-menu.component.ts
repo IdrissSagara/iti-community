@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FeedStore } from 'src/modules/feed/feed.store';
 import { Room } from '../../room.model';
 import { RoomStore } from '../../room.store';
@@ -26,17 +26,17 @@ export class RoomMenuComponent implements OnInit {
   }
 
   async ngOnInit() {
-     //===================================================
+    //===================================================
     // On récupere le dernier room visiter.
     //===================================================
     let lastRoom = localStorage.getItem('LastRoomSee');
-    this.rooms = await this.queries.getAll();    
+    this.rooms = await this.queries.getAll();
 
-    var roomSee  =  this.rooms.find(w=>w.id===lastRoom);
-    
-    if(roomSee == undefined){
+    var roomSee = this.rooms.find(w => w.id === lastRoom);
+
+    if (roomSee == undefined) {
       this.goToRoom(this.rooms[0]);
-    }else{
+    } else {
       this.goToRoom(roomSee);
     }
   }
@@ -52,11 +52,11 @@ export class RoomMenuComponent implements OnInit {
 
   /**
    * Methode qui rajoute un nouvel room dans la liste.
-   * @param room 
+   * @param room
    */
-  RefreshRooms(room: Room){
+  RefreshRooms(room: Room) {
     this.rooms.push(room);
   }
-  
+
 
 }
