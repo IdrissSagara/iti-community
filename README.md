@@ -133,7 +133,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 5. Ajouter ajouter les nouvelles rooms créées dynamiquement - √
 
 #### Level III
-6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
+6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)- √
 
 ### Post
 
