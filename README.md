@@ -43,7 +43,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## TP
 
 
-### Sign Up
+### Sign Up - GOOD !!
 Permet d'enregistrer un nouvel utilisateur sur la plateforme.
 
 
@@ -60,21 +60,21 @@ Le inputs son créés à partir du composant `nz-form-item` de la ui library [ng
 
 #### Level I
     
-1. Terminer le formulaire pour l'ajout d'un utilisateur
-2. Rendre le username et le mot de passe obligatoires
-3. En cas de succès, rediriger l'utilisateur sur /splash/login
+1. Terminer le formulaire pour l'ajout d'un utilisateur - GOOD !!
+2. Rendre le username et le mot de passe obligatoires  - GOOD !!
+3. En cas de succès, rediriger l'utilisateur sur /splash/login - GOOD !!
 
 #### Level II
 
-4. Afficher les messages d'erreurs de validations
+4. Afficher les messages d'erreurs de validations - GOOD !!
     > Utiliser la propriété `nzErrorTip` sur le composant `nz-form-control`
     ```html
     <nz-form-control nzErrorTip="Message de validation">
     ```
-5. Vérifier si le username est disponible. Informer l'utilisateur de l'indisponibilité d'un username.
+5. Vérifier si le username est disponible. Informer l'utilisateur de l'indisponibilité d'un username. - GOOD !!
     > Utiliser le la méthode `exists` sur la classe `UserQueries`
 
-### Sign In
+### Sign In 
 Permet à un utilisateur de se connecter à la plateforme.
 
 Le formulaire doit contenir 2 champs : "username", "Mot de passe".

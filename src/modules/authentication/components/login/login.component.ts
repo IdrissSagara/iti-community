@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from "ng-zorro-antd/message";
+import { LoginCommandResult } from '../../services/authentication.commands';
 import { AuthenticationService } from '../../services/authentication.service';
 
 class LoginFormModel {
@@ -43,9 +44,23 @@ export class LoginComponent implements OnInit {
       return;
     }
     try {
+      //=========================================================================================================================================
       // TODO vérifier le résultat de l'authentification. Rediriger sur "/" en cas de succès ou afficher une erreur en cas d'échec
-      await this.authService.authenticate(this.model.username, this.model.password);
-      this.router.navigate(['/']);
+      //=========================================================================================================================================
+      await this.authService.authenticate(this.model.username, this.model.password)
+        .then(Response => {
+          console.log(Response);
+          var res = Response as LoginCommandResult;
+          if (res.success) {
+            //this.router.navigate(['/']);
+          } else if (res.success) {
+            this.nzMessageService.error("");
+          }
+        })
+        .catch(err => {
+          this.nzMessageService.error('Une erreur est survenue. Veuillez réessayer plus tard');
+        });
+
     } catch (e) {
       this.nzMessageService.error('Une erreur est survenue. Veuillez réessayer plus tard');
     }
