@@ -74,23 +74,23 @@ Le inputs son créés à partir du composant `nz-form-item` de la ui library [ng
 5. Vérifier si le username est disponible. Informer l'utilisateur de l'indisponibilité d'un username. - √ 
     > Utiliser le la méthode `exists` sur la classe `UserQueries`
 
-### Sign In 
+### Sign In - √ 
 Permet à un utilisateur de se connecter à la plateforme.
 
 Le formulaire doit contenir 2 champs : "username", "Mot de passe".
-Le clic sur le bouton "Connexion" permet de soumettre le formulaire en appelant la méthode `submit()` du composant.
+Le clic sur le bouton "Connexion" permet de soumettre le formulaire en appelant la méthode `submit()` du composant. 
 
 #### Level I
 
-1. Faire le formulaire de sign in
-2. Rendre le username et le mot de passe obligatoires
-3. Rediriger l'utilisateur sur "/" en cas de succès
+1. Faire le formulaire de sign in - √ 
+2. Rendre le username et le mot de passe obligatoires - √ 
+3. Rediriger l'utilisateur sur "/" en cas de succès - √ 
 
 #### Level II
 
-4. Afficher les messages d'erreurs de validation pour chaque champs
-5. Afficher un message si le login a échoué
-    > Vous pouvez utiliser le `NzMessageService` pour afficher des messages
+4. Afficher les messages d'erreurs de validation pour chaque champs - √ 
+5. Afficher un message si le login a échoué - √ 
+    > Vous pouvez utiliser le `NzMessageService` pour afficher des messages - √ 
 
 ### Room
 Une room est une salle de discussion dans laquelle les utilisateurs peuvent s'échanger des messages.
@@ -100,22 +100,22 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
 #### Level I
 
-1. Afficher la liste des rooms dans le menu
-    > `src/modules/room/room-menu`
+1. Afficher la liste des rooms dans le menu - √ 
+    > `src/modules/room/room-menu` - √ 
 
-    > Utiliser la directive ngFor pour itérer sur les rooms et afficher leurs noms
+    > Utiliser la directive ngFor pour itérer sur les rooms et afficher leurs noms - √ 
 
-2. Pouvoir naviguer vers room au clic dans le menu
+2. Pouvoir naviguer vers room au clic dans le menu - √ 
 
 #### Level II
 
 3. Pouvoir ajouter une nouvelle room
-    > Dans `src/modules/room/room-menu`
+    > Dans `src/modules/room/room-menu` - √ 
 
-    > Appeler la méthode open du composant `app-room-create-modal` au clic du bouton "+"
+    > Appeler la méthode open du composant `app-room-create-modal` au clic du bouton "+" - √ 
     > Dans `src/modules/room/room-create-modal`
 
-    > Terminer le formulaire d'ajout d'une room en ajoutant le champs **obligatire** manquant
+    > Terminer le formulaire d'ajout d'une room en ajoutant le champs **obligatire** manquant - √
     ```html
     <nz-form-item>
       <nz-form-label nzFor="name">Nom de la room</nz-form-label>
@@ -124,13 +124,13 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
       </nz-form-control>
     </nz-form-item>
     ```
-    > Lors de la validation du formulaire, la méthode ```onOk``` sera invoquée (tel que configuré sur le composant `nz-modal`)
+    > Lors de la validation du formulaire, la méthode ```onOk``` sera invoquée (tel que configuré sur le composant `nz-modal`) - √
 
 4. Sélectionner par défaut la première room de la liste
     > Rediriger vers la première room si il n'y a pas de roomId dans le store. 
     > Tester `this.feedStore.value.roomId`
   
-5. Ajouter ajouter les nouvelles rooms créées dynamiquement
+5. Ajouter ajouter les nouvelles rooms créées dynamiquement - √
 
 #### Level III
 6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
