@@ -16,7 +16,8 @@ import { RoomStore } from './room.store';
 import { RoomService } from './services/room.service';
 import { RoomComponent } from './components/room/room.component';
 import { FeedModule } from '../feed/feed.module';
-import { InputModule } from '../input/input.module';
+import {InputModule} from '../input/input.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [RoomMenuComponent, RoomCreateModalComponent, RoomComponent],
@@ -41,7 +42,8 @@ import { InputModule } from '../input/input.module';
     NzIconModule,
     NzSelectModule,
     FeedModule,
-    InputModule
+    InputModule,
+    RouterModule
   ]
 })
 export class RoomModule { }
