@@ -18,10 +18,12 @@ export class RoomComponent implements OnInit {
   }
 
   async onMessage(payload: MessageSentEventPayload) {
+    console.log(payload);
     if (!this.store.value.roomId) {
       return;
     }
     const post = await this.postService.create(this.store.value.roomId, payload.message, payload.file);
+    console.log(post);
     this.store.mutate(s => {
       return {
         ...s,
