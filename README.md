@@ -115,7 +115,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
     > Appeler la méthode open du composant `app-room-create-modal` au clic du bouton "+" - √ 
     > Dans `src/modules/room/room-create-modal`
 
-    > Terminer le formulaire d'ajout d'une room en ajoutant le champs **obligatire** manquant - √
+    > Terminer le formulaire d'ajout d'une room en ajoutant le champs **obligatire** manquant - √ 
     ```html
     <nz-form-item>
       <nz-form-label nzFor="name">Nom de la room</nz-form-label>
@@ -138,7 +138,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 ### Post
 
 ### Level I
-1. Pouvoir rédiger et envoyer un post
+1. Pouvoir rédiger et envoyer un post  - √ 
     > `src/modules/input/components/feed-input`
 
 2. Afficher les posts reçues dans la room
