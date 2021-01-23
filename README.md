@@ -165,9 +165,9 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
 ### Level I
 
-1. Afficher la photo de l'utilisateur connecté
-2. Pouvoir éditer le profile de l'utilisateur: son username et sa photo en cliquant sur le bouton dédié
-3. Pouvoir se déconnecter de l'application encliquant sur le bonton rouge de logout. Rediriger l'utilisateur vers le /splash/login
+1. Afficher la photo de l'utilisateur connecté - √
+2. Pouvoir éditer le profile de l'utilisateur: son username et sa photo en cliquant sur le bouton dédié - √
+3. Pouvoir se déconnecter de l'application encliquant sur le bonton rouge de logout. Rediriger l'utilisateur vers le /splash/login - √
 
 ### Notifications
 
