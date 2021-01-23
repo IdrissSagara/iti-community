@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/modules/authentication/services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user.model';
-import { UserStore } from '../../user.store';
 import { NotificationStore } from 'src/modules/notification/notification.store';
+import {UserStore} from '../../user.store';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-widget',
@@ -20,6 +21,7 @@ export class UserWidgetComponent implements OnInit {
   user$: Observable<User | undefined>;
   photoUrl$: Observable<string | undefined>;
   hasUnread$: Observable<boolean>;
+  user: User | undefined;
 
   constructor(
     private authService: AuthenticationService,
@@ -27,18 +29,29 @@ export class UserWidgetComponent implements OnInit {
     private modalService: NzModalService,
     private notificationStore: NotificationStore,
     private userService: UserService,
-    private store: UserStore
+    private store: UserStore,
+    private sanitizer: DomSanitizer
   ) {
     this.user$ = store.user$;
     this.photoUrl$ = store.get(s => s.user && s.user.photoUrl ? s.user.photoUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
     this.hasUnread$ = notificationStore.hasUnread$;
   }
 
-  ngOnInit(): void {
+  get photoUrl(): SafeResourceUrl | undefined {
+    if (this.user?.photoUrl) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(this.user.photoUrl);
+    }
   }
 
   fireToggleNotificaions() {
-      this.toggleNotifications.emit();
+    this.toggleNotifications.emit();
+  }
+
+  ngOnInit(): void {
+    this.user$.subscribe(res => {
+      this.user = res;
+      console.log('user--info', this.user);
+    });
   }
 
   logout() {
