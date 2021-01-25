@@ -141,18 +141,18 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 1. Pouvoir rédiger et envoyer un post  - √ 
     > `src/modules/input/components/feed-input`
 
-2. Afficher les posts reçues dans la room
+2. Afficher les posts reçues dans la room - √
     > `src/modules/feed/components/feed`
-3. Afficher le nom de l'auteur des messages
+3. Afficher le nom de l'auteur des messages - √
 4. Afficher la photo de l'auteur des messages
-5. Afficher la date du post
+5. Afficher la date du post - √
 6. Afficher une image si le message contient une url vers une image
 7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4)
 8. Afficher le player de youtube si le message contient un lien youtube
-9. Implémenter le bouton like
+9. Implémenter le bouton like - √
 
 ### Level II
-8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations)
+8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations) - √
 9. Insérer les nouveaux posts reçues via WebSocket
 10. Pouvoir uploader des photos, vidéos et audios
 

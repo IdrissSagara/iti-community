@@ -17,7 +17,19 @@ export class PostService {
     }
 
     async create(roomId: string, message: string, file?: File): Promise<PostData> {
-        return  this.commands.create(roomId, message, file);
+        console.log(file);
+        const post = await this.commands.create(roomId, message, file);
+        console.log(post);
+        return {
+            id: post.id,
+            likes: 0,
+            roomId,
+            comments: [],
+            createdAt: new Date().toISOString(),
+            createdBy: this.userStore.value.user!,
+            liked: false,
+            message
+        }
     }
 
     async fetch(roomId: string, page: PageModel): Promise<void> {
@@ -30,7 +42,15 @@ export class PostService {
         });
     }
 
-    like(post: Post) {
-      // TODO appeler la méthode like sur PostCommands
+    /**
+     *  TODO appeler la méthode like sur PostCommands
+     * @param post
+     */
+    async like(post: Post): Promise<void> {
+        console.log(post.liked);
+        await this.commands.like(post.roomId, post.id, post.liked);
+
     }
+
+
 }

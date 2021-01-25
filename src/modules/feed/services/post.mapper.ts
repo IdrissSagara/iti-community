@@ -9,8 +9,9 @@ export class PostMapper {
   }
 
   private parseMessage(message: string): PostMessage {
+    console.log(message);
     // TODO rajouter png jpg et gif
-    const pictureRegex = /http[s]?:\/\/.+\.(jpeg|jpg)/gmi;
+    const pictureRegex = /http[s]?:\/\/.+\.(jpeg|jpg|png|gif)/gmi;
 
      // TODO mp4,wmv,flv,avi,wav
     const videoRegex = / /gmi;
@@ -24,6 +25,7 @@ export class PostMapper {
     const pictureMatche = pictureRegex.exec(message);
     if (pictureMatche) {
      // TODO ajouter un attachement de type image dans attachements
+     //attachements.push()
     }
 
     const videoMatche = videoRegex.exec(message)

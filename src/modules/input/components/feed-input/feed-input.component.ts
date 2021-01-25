@@ -21,6 +21,8 @@ export class FeedInputComponent {
    */
   message: string = "";
 
+  imgURL: any;
+
   users: User[] = [];
 
   /**
@@ -87,6 +89,11 @@ export class FeedInputComponent {
   */
   onFileUpload = (file: File) => {
     this.setFile(file);
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
     return false;
   }
 
@@ -141,6 +148,9 @@ export class FeedInputComponent {
    */
   setFile(file: File | null) {
     this.file = file;
+    if (file == null) {
+      this.imgURL = "";
+    }
   }
 
   /**
@@ -148,7 +158,8 @@ export class FeedInputComponent {
    */
   fireMessageSent() {
     // TODO émettre l'évènement "messageSent"
-
+    console.log("ajout d'un file");
+    console.log(this.file);
     this.messageSent.emit({
       message: this.message,
       file: this.file!!,
