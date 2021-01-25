@@ -1,5 +1,8 @@
 <div class="feed-input">
   <nz-tag nzMode="closeable" (nzOnClose)="onCloseTag()" *ngIf="file">
+    <div>
+      <img width="200" height="200" src="{{imgURL}}" alt="">
+    </div>
     <span class="tag-inner">{{file?.name}}</span>
   </nz-tag>
   <nz-upload [nzBeforeUpload]="onFileUpload" [nzAccept]="supportedTypes" *ngIf="!file">

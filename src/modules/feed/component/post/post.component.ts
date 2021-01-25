@@ -16,9 +16,11 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   constructor(
     private postService: PostService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+    console.log(this.post);
   }
 
   ngAfterViewInit() {
@@ -26,6 +28,9 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   async like() {
+    this.post.liked = !this.post.liked;
     // TODO like du post
+    await this.postService.like(this.post);
+
   }
 }
