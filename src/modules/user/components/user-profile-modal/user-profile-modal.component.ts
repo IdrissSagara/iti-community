@@ -8,7 +8,7 @@ export class UserProfileForm {
   id: string;
   username: string;
   photoUrl?: string;
-  _file?: File;
+  photo: File | undefined;
   user: User;
 
   constructor(user: User) {
@@ -19,11 +19,11 @@ export class UserProfileForm {
   }
 
   get file() {
-    return this._file;
+    return this.photo;
   }
 
   set file(file: File | undefined) {
-    this._file = file;
+    this.photo = file;
     if (file) {
       this.toBase64(file).then(s => {
         this.photoUrl = s;
@@ -76,9 +76,15 @@ export class UserProfileModalComponent implements OnInit {
 
   async onOk() {
     // TODO vérifier si le formulaire est valide
+      if (this.model.hasChanged()) {
+        // TODO mettre à jour l'utilisateur via le service
+        await this.userService.update(this.model).then(res => {
+          console.log('updated--', res);
 
-    if (this.model.hasChanged()) {
-      // TODO mettre à jour l'utilisateur via le service
+          this.close();
+        }).catch( error => {
+          console.log("user form error", error);
+        });
     }
 
     this.close();

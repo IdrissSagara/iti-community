@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/modules/authentication/services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user.model';
-import { UserStore } from '../../user.store';
+import {UserStore} from '../../user.store';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-widget',
@@ -17,22 +18,34 @@ export class UserWidgetComponent implements OnInit {
   toggleNotifications: EventEmitter<void> = new EventEmitter();
 
   user$: Observable<User | undefined>;
+  user: User | undefined;
 
   constructor(
     private authService: AuthenticationService,
     private router: Router,
     private modalService: NzModalService,
     private userService: UserService,
-    private store: UserStore
+    private store: UserStore,
+    private sanitizer: DomSanitizer
   ) {
     this.user$ = store.user$;
   }
 
-  ngOnInit(): void {
+  get photoUrl(): SafeResourceUrl | undefined {
+    if (this.user?.photoUrl) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(this.user.photoUrl);
+    }
   }
 
   fireToggleNotificaions() {
-      this.toggleNotifications.emit();
+    this.toggleNotifications.emit();
+  }
+
+  ngOnInit(): void {
+    this.user$.subscribe(res => {
+      this.user = res;
+      console.log('user--info', this.user);
+    });
   }
 
   logout() {
@@ -42,6 +55,7 @@ export class UserWidgetComponent implements OnInit {
       nzOkText: "Déconnexion",
       nzOnOk: () => {
         // TODO logout puis rediriger vers "/splash/login"
+        this.router.navigate(["/splash/login"]);
       }
     });
   }
