@@ -16,6 +16,7 @@ import { PostAttachementAudioComponent } from './component/post-attachements/pos
 import { PostAttachementYoutubeComponent } from './component/post-attachements/post-attachement-youtube/post-attachement-youtube.component';
 import { FeedStore } from './feed.store';
 import { UserModule } from '../user/user.module';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { UserModule } from '../user/user.module';
   imports: [
     CommonModule,
     UserModule,
-    NzIconModule
+    NzIconModule,
+    YouTubePlayerModule
   ]
 })
 export class FeedModule { }

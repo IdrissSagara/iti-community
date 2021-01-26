@@ -10,6 +10,7 @@ import { PostService } from '../../services/post.service';
 export class PostComponent implements OnInit, AfterViewInit {
   @Input()
   post: Post;
+  contentMessage: string;
 
   @ViewChild("anchor")
   anchor: ElementRef<HTMLDivElement>;
@@ -21,6 +22,8 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log(this.post);
+    this.contentMessage = this.linkify(this.post.message.text.content);
+
   }
 
   ngAfterViewInit() {
@@ -29,8 +32,31 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   async like() {
     this.post.liked = !this.post.liked;
+
+    //==========================================================
     // TODO like du post
+    //==========================================================
     await this.postService.like(this.post);
 
   }
+
+  playVideo(event: any) {
+    event.toElement.play()
+  }
+
+  linkify(text: string): string {
+    let replacedText;
+    let urlRegex;
+
+    urlRegex = /http[s]?:\/\/\S+/g;
+    replacedText = text.replace(urlRegex, str => `<a href="${str}" target="_blank">${str}</a>`);
+
+
+    const audioMatche = urlRegex.exec(text)
+    console.log(audioMatche);
+
+
+    return replacedText;
+  }
+
 }

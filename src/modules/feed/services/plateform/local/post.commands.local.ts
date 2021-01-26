@@ -13,6 +13,7 @@ export class LocalPostCommands extends PostCommands {
 
     async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
         const posts = this.storage.getValue();
+        console.log(posts[roomId]);
         posts[roomId] = posts[roomId] || [];
         const post: PostData = {
             id: Math.round(Math.random() * 1000).toString(),
@@ -25,7 +26,7 @@ export class LocalPostCommands extends PostCommands {
             message
         }
 
-        
+
         posts[roomId].push(post);
         this.storage.setValue(posts);
         return {
@@ -49,5 +50,5 @@ export class LocalPostCommands extends PostCommands {
         post.liked = newValue;
         this.storage.setValue(posts);
     }
-    
+
 }

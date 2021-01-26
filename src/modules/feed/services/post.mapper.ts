@@ -1,3 +1,4 @@
+import { getMaxListeners } from 'process';
 import { MessageAudioElement, MessageElement, MessageImageElement, MessageTextElement, MessageVideoElement, MessageYoutubeElement, Post, PostData, PostMessage } from '../post.model';
 
 export class PostMapper {
@@ -9,41 +10,82 @@ export class PostMapper {
   }
 
   private parseMessage(message: string): PostMessage {
-    console.log(message);
+   
+    var urlsMatched = message.split(/\s+/);
+    console.log(urlsMatched);
+
+    //======================================================
     // TODO rajouter png jpg et gif
+    //======================================================
     const pictureRegex = /http[s]?:\/\/.+\.(jpeg|jpg|png|gif)/gmi;
 
-     // TODO mp4,wmv,flv,avi,wav
-    const videoRegex = / /gmi;
+    //======================================================
+    // TODO mp4,wmv,flv,avi,wav
+    //======================================================
+    const videoRegex = /http[s]?:\/\/.+\.(mp4|wmv|flv|avi|wav)/gmi;
 
-     // TODO mp3,ogg,wav
-    const audioRegex = / /gmi;
+    //======================================================
+    // TODO mp3,ogg,wav
+    //======================================================
+    const audioRegex = /http[s]?:\/\/.+\.(mp3|ogg|wav)/gmi;
 
     const youtubeRegex = /(http[s]?:\/\/)?www\.(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/gmi;
     const attachements: MessageElement[] = [];
 
-    const pictureMatche = pictureRegex.exec(message);
-    if (pictureMatche) {
-     // TODO ajouter un attachement de type image dans attachements
-     //attachements.push()
-    }
+    urlsMatched.forEach(url => {
+      const pictureMatche = pictureRegex.exec(url);
+      if (pictureMatche) {
+        console.log(pictureMatche);
+        //===============================================================
+        // TODO ajouter un attachement de type image dans attachements
+        //===============================================================
+        attachements.push({
+          type: 'image',
+          url: pictureMatche[0]
+        });
+      }
 
-    const videoMatche = videoRegex.exec(message)
-    if (videoMatche) {
-     // TODO ajouter un attachement de type video dans attachements
+      const videoMatche = videoRegex.exec(url)
+      if (videoMatche) {
+        //===============================================================
+        // TODO ajouter un attachement de type video dans attachements
+        //===============================================================
+        attachements.push({
+          type: 'video',
+          url: videoMatche[0]
+        });
+      }
+  
+      const audioMatche = audioRegex.exec(url)
+      if (audioMatche) {
+        //===============================================================
+        // TODO ajouter un attachement de type audio dans attachements
+        //===============================================================
+        attachements.push({
+          type: 'audio',
+          url: audioMatche[0]
+        });
+      }
 
-    }
+    });
+    
+   
 
-    const audioMatche = audioRegex.exec(message)
-    if (audioMatche) {
-     // TODO ajouter un attachement de type audio dans attachements
-
-    }
+   
 
     const youtubeMatche = youtubeRegex.exec(message)
     if (youtubeMatche) {
-     // TODO ajouter un attachement de type youtube dans attachements
+      //===============================================================
+      // TODO ajouter un attachement de type youtube dans attachements
+      //===============================================================
+      console.log(youtubeMatche);
+      attachements.push({
+        type: 'youtube',
+        videoId: youtubeMatche[2]
+      });
     }
+
+    
 
     return {
       text: {
