@@ -1,5 +1,5 @@
 import { TypedLocalStorage } from 'src/modules/common/TypedLocalStorage';
-import { PostData } from 'src/modules/feed/post.model';
+import { PostData,Post } from 'src/modules/feed/post.model';
 
 interface PostStorageData {
     [id: string]: PostData[];

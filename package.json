@@ -19,11 +19,12 @@
     "@angular/platform-browser": "~11.0.0",
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
-    "socket.io-client": "~3.0.1",
+    "@angular/youtube-player": "^11.1.0",
     "lodash-es": "^4.17.15",
     "luxon": "1.25.0",
     "ng-zorro-antd": "^10.1.0",
     "rxjs": "~6.6.0",
+    "socket.io-client": "~3.0.1",
     "tslib": "^2.0.0",
     "utility-types": "^3.10.0",
     "zone.js": "~0.11.3"
