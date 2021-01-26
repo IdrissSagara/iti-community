@@ -1,3 +1,9 @@
-<div>
-  <div class="title">Notifications</div>
+<div class="title">Notifications</div>
+<br>
+<div class="notif">
+  <div *ngFor="let notif of anyNotifications" class="notif-body">
+    {{notif.subject}}
+    <p>{{'Il ya ' + timeConversion(notif.timestamp)}}</p>
+  </div>
 </div>
+
