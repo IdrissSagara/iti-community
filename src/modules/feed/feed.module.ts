@@ -19,6 +19,8 @@ import { UserModule } from '../user/user.module';
 import { HttpPostCommands } from './services/plateform/http/post.commands.http';
 import { HttpPostQueries } from './services/plateform/http/post.queries.http';
 import { FeedSocketService } from './services/feed.socket.service';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
 
 @NgModule({
   declarations: [FeedComponent, PostComponent, PostAttachementImageComponent, PostAttachementVideoComponent, PostAttachementAudioComponent, PostAttachementYoutubeComponent],
@@ -33,7 +35,8 @@ import { FeedSocketService } from './services/feed.socket.service';
   imports: [
     CommonModule,
     UserModule,
-    NzIconModule
+    NzIconModule,
+    YouTubePlayerModule
   ]
 })
 export class FeedModule { }

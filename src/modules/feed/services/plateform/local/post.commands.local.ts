@@ -14,6 +14,7 @@ export class LocalPostCommands extends PostCommands {
 
     async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
         const posts = this.storage.getValue();
+        console.log(posts[roomId]);
         posts[roomId] = posts[roomId] || [];
         const post: PostData = {
             id: Math.round(Math.random() * 1000).toString(),
