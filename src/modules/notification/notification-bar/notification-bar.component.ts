@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '../services/notification.service';
-import {AnyNotification, NewRoomNotification, PostLikedNotification} from '../notification.model';
+import {AnyNotification} from '../notification.model';
 import {NotificationStore} from '../notification.store';
 import {NotificationQueries} from '../services/notification.queries';
 import {LocalNotificationQueries} from '../services/platform/local/notification.queries.local';
@@ -12,7 +12,6 @@ import {LocalNotificationQueries} from '../services/platform/local/notification.
 })
 export class NotificationBarComponent implements OnInit {
   anyNotifications: AnyNotification[];
-  newRoomNotification: NewRoomNotification[];
 
   constructor(private notifService: NotificationService, private notifStore: NotificationStore,
               private notifQueries: NotificationQueries) {

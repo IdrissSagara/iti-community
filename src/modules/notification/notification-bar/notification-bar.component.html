@@ -2,7 +2,7 @@
 <br>
 <div class="notif">
   <div *ngFor="let notif of anyNotifications" class="notif-body">
-    {{notif.data.user.username + ' à ' + notif.subject}}
+    {{ notif.subject}}
     <p>{{'Il y a ' + timeConversion(notif.timestamp)}}</p>
   </div>
 </div>

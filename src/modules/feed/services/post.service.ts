@@ -24,7 +24,7 @@ export class PostService {
             id: post.id,
             likes: 0,
             roomId,
-            comments: [],
+            // comments: [],
             createdAt: new Date().toISOString(),
             createdBy: this.userStore.value.user!,
             liked: false,

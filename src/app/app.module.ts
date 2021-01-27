@@ -16,16 +16,19 @@ import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
-import { UserModule } from 'src/modules/user/user.module';
-import { FeedModule } from 'src/modules/feed/feed.module';
-import { RoomModule } from 'src/modules/room/room.module';
-import { InputModule } from 'src/modules/input/input.module';
-import { RoomPageComponent } from './pages/room-page/room-page.component';
-import { NotificationModule } from 'src/modules/notification/notification.module';
-import { WebsocketConnection } from 'src/modules/common/WebsocketConnection';
-import { SocketIoWebsocketConnection } from 'src/modules/common/SocketIoWebsocketConnection';
-import { WebSocketTopic } from 'src/modules/common/WebSocketTopic';
+import {RegistrationPageComponent} from './pages/registration-page/registration-page.component';
+import {UserModule} from 'src/modules/user/user.module';
+import {FeedModule} from 'src/modules/feed/feed.module';
+import {RoomModule} from 'src/modules/room/room.module';
+import {InputModule} from 'src/modules/input/input.module';
+import {RoomPageComponent} from './pages/room-page/room-page.component';
+import {NotificationModule} from 'src/modules/notification/notification.module';
+import {WebsocketConnection} from 'src/modules/common/WebsocketConnection';
+import {SocketIoWebsocketConnection} from 'src/modules/common/SocketIoWebsocketConnection';
+import {WebSocketTopic} from 'src/modules/common/WebSocketTopic';
+import {NotificationBarComponent} from '../modules/notification/notification-bar/notification-bar.component';
+import {FeedSocketService} from '../modules/feed/services/feed.socket.service';
+
 const ws = new SocketIoWebsocketConnection();
 
 registerLocaleData(fr);
@@ -37,7 +40,8 @@ registerLocaleData(fr);
     SplashScreenLayoutComponent,
     AppLayoutComponent,
     RegistrationPageComponent,
-    RoomPageComponent
+    RoomPageComponent,
+    NotificationBarComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +59,10 @@ registerLocaleData(fr);
     NzFormModule,
     NzButtonModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: fr_FR }, {
+  providers: [{provide: NZ_I18N, useValue: fr_FR}, {
     provide: WebsocketConnection,
     useValue: ws
-  }, WebSocketTopic],
+  }, WebSocketTopic, FeedSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

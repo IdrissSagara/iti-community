@@ -12,13 +12,12 @@ export class LocalPostCommands extends PostCommands {
         super();
     }
 
-    async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
+   /* async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
         const posts = this.storage.getValue();
         console.log(posts[roomId]);
         posts[roomId] = posts[roomId] || [];
         const post: PostData = {
             id: Math.round(Math.random() * 1000).toString(),
-            comments: [],
             roomId,
             createdAt: new Date().toISOString(),
             createdBy: this.userStore.value.user!,
@@ -33,7 +32,7 @@ export class LocalPostCommands extends PostCommands {
         return {
             id: post.id
         }
-    }
+    }*/
 
   async create(roomId: string, message: string, file?: File): Promise<PostData> {
     const posts = this.storage.getValue();
@@ -55,14 +54,18 @@ export class LocalPostCommands extends PostCommands {
 
     async like(roomId: string, postId: string, newValue: boolean): Promise<void> {
         const posts = this.storage.getValue();
-        posts[roomId] = posts[roomId] || [];
+      posts[roomId] = posts[roomId] || [];
 
-        const post = posts[roomId].find(p => p.id === postId);
-        if (!post) {
-            throw Error("Post not found");
-        }
+      const post = posts[roomId].find(p => p.id === postId);
+      if (!post) {
+        throw Error('Post not found');
+      }
 
-        post.liked = newValue;
-        this.storage.setValue(posts);
+      post.liked = newValue;
+      this.storage.setValue(posts);
     }
+
+  comment(postId: string, comment: string): Promise<void> {
+    return Promise.resolve(undefined);
+  }
 }

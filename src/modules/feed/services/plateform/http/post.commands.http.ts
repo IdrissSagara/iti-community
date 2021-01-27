@@ -14,7 +14,7 @@ export class HttpPostCommands extends PostCommands {
     const formData = new FormData();
     formData.append("message", message);
     if (file) {
-      formData.append("file", file);
+      formData.append('file', file);
     }
 
     return this.http.post<PostData>(`${environment.serverBaseUrl}/room/${roomId}/post`, formData).toPromise();
@@ -22,5 +22,9 @@ export class HttpPostCommands extends PostCommands {
 
   like(roomId: string, postId: string): Promise<void> {
     return this.http.post<void>(`${environment.serverBaseUrl}/room/${roomId}/post/${postId}/like`, {}).toPromise();
+  }
+
+  comment(postId: string, comment: string): Promise<void> {
+    return Promise.resolve(undefined);
   }
 }
