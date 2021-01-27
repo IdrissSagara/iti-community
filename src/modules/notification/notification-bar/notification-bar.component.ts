@@ -3,7 +3,7 @@ import {NotificationService} from '../services/notification.service';
 import {AnyNotification, NewRoomNotification, PostLikedNotification} from '../notification.model';
 import {NotificationStore} from '../notification.store';
 import {NotificationQueries} from '../services/notification.queries';
-import {Observable} from 'rxjs';
+import {LocalNotificationQueries} from '../services/platform/local/notification.queries.local';
 
 @Component({
   selector: 'app-notification-bar',
@@ -12,6 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class NotificationBarComponent implements OnInit {
   anyNotifications: AnyNotification[];
+  newRoomNotification: NewRoomNotification[];
 
   constructor(private notifService: NotificationService, private notifStore: NotificationStore,
               private notifQueries: NotificationQueries) {
@@ -20,8 +21,15 @@ export class NotificationBarComponent implements OnInit {
 
   async ngOnInit() {
     this.anyNotifications = await this.notifQueries.getNotifications();
-    console.log('any Notif', this.anyNotifications);
 
+  }
+
+  async btnNotif() {
+    await this.notifQueries.getNotifications().then(res => {
+      this.anyNotifications = res;
+      console.log('res', res);
+    });
+    console.log('any Notif', this.anyNotifications);
   }
 
   timeConversion(millisec: any) {
@@ -29,7 +37,7 @@ export class NotificationBarComponent implements OnInit {
     const hours = date.getHours();
     const minutes = '0' + date.getMinutes();
     const seconds = '0' + date.getSeconds();
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    const formattedTime = hours + 'h';
     return formattedTime;
   }
 }

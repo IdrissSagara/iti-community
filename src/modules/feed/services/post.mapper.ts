@@ -1,4 +1,3 @@
-import { getMaxListeners } from 'process';
 import { MessageAudioElement, MessageElement, MessageImageElement, MessageTextElement, MessageVideoElement, MessageYoutubeElement, Post, PostData, PostMessage } from '../post.model';
 
 export class PostMapper {
@@ -10,7 +9,7 @@ export class PostMapper {
   }
 
   private parseMessage(message: string): PostMessage {
-   
+
     var urlsMatched = message.split(/\s+/);
     console.log(urlsMatched);
 
@@ -55,7 +54,7 @@ export class PostMapper {
           url: videoMatche[0]
         });
       }
-  
+
       const audioMatche = audioRegex.exec(url)
       if (audioMatche) {
         //===============================================================
@@ -68,10 +67,7 @@ export class PostMapper {
       }
 
     });
-    
-   
 
-   
 
     const youtubeMatche = youtubeRegex.exec(message)
     if (youtubeMatche) {
@@ -85,7 +81,6 @@ export class PostMapper {
       });
     }
 
-    
 
     return {
       text: {
