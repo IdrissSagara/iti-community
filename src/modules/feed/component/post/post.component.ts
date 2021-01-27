@@ -21,8 +21,8 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.post);
-    this.contentMessage = this.linkify(this.post.message.text.content);
+//    console.log(this.post);
+    this.contentMessage = this.link(this.post.message.text.content);
 
   }
 
@@ -40,21 +40,31 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   }
 
+  /**
+   * 
+   * @param event 
+   */
   playVideo(event: any) {
     event.toElement.play()
   }
 
-  linkify(text: string): string {
+  /**
+   * 
+   * @param text 
+   *
+   */
+  link(text: string): string {
     let replacedText;
     let urlRegex;
+    let mentionRegex;
 
     urlRegex = /http[s]?:\/\/\S+/g;
+
+    mentionRegex =  /\@([\w.\-]+)/g;
+
     replacedText = text.replace(urlRegex, str => `<a href="${str}" target="_blank">${str}</a>`);
 
-
-    const audioMatche = urlRegex.exec(text)
-    console.log(audioMatche);
-
+    replacedText = replacedText.replace(mentionRegex, str => `<a>${str}</a>`);
 
     return replacedText;
   }

@@ -144,7 +144,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 2. Afficher les posts reçues dans la room - √
     > `src/modules/feed/components/feed`
 3. Afficher le nom de l'auteur des messages - √
-4. Afficher la photo de l'auteur des messages
+4. Afficher la photo de l'auteur des messages - √
 5. Afficher la date du post - √
 6. Afficher une image si le message contient une url vers une image - √
 7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4) - √
@@ -154,12 +154,12 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 ### Level II
 8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations) - √
 9. Insérer les nouveaux posts reçues via WebSocket 
-10. Pouvoir uploader des photos, vidéos et audios
+10. Pouvoir uploader des photos, vidéos et audios - √
 
 ### Level III
 10. Pouvoir parser plusieurs type de contenus dans un seul post - √
 11. Remplacer les liens http par des balises <a>...</a>. - √
-12. Dans les messages, afficher les mentions `@username` en vert
+12. Dans les messages, afficher les mentions `@username` en vert - √
 
 ### User Widget 
 

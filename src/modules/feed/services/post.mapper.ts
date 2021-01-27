@@ -1,4 +1,4 @@
-import { getMaxListeners } from 'process';
+//import { getMaxListeners } from 'process';
 import { MessageAudioElement, MessageElement, MessageImageElement, MessageTextElement, MessageVideoElement, MessageYoutubeElement, Post, PostData, PostMessage } from '../post.model';
 
 export class PostMapper {
@@ -10,9 +10,17 @@ export class PostMapper {
   }
 
   private parseMessage(message: string): PostMessage {
-   
-    var urlsMatched = message.split(/\s+/);
-    console.log(urlsMatched);
+
+    let urlsMatched: string[] = [];
+    //============================================================================
+    // On ajoute les Urls dans le texte dans un tableau.
+    //============================================================================
+    let wordsMatched = message.split(/\s+/);
+    wordsMatched.forEach(word => {
+      if (word.startsWith("http") || word.startsWith("www")) {
+        urlsMatched.push(word);
+      }
+    });
 
     //======================================================
     // TODO rajouter png jpg et gif
@@ -35,7 +43,6 @@ export class PostMapper {
     urlsMatched.forEach(url => {
       const pictureMatche = pictureRegex.exec(url);
       if (pictureMatche) {
-        console.log(pictureMatche);
         //===============================================================
         // TODO ajouter un attachement de type image dans attachements
         //===============================================================
@@ -55,7 +62,7 @@ export class PostMapper {
           url: videoMatche[0]
         });
       }
-  
+
       const audioMatche = audioRegex.exec(url)
       if (audioMatche) {
         //===============================================================
@@ -68,24 +75,24 @@ export class PostMapper {
       }
 
     });
-    
-   
 
-   
+
+
+
 
     const youtubeMatche = youtubeRegex.exec(message)
     if (youtubeMatche) {
       //===============================================================
       // TODO ajouter un attachement de type youtube dans attachements
       //===============================================================
-      console.log(youtubeMatche);
+      //console.log(youtubeMatche);
       attachements.push({
         type: 'youtube',
         videoId: youtubeMatche[2]
       });
     }
 
-    
+
 
     return {
       text: {

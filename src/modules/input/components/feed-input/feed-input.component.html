@@ -1,3 +1,4 @@
+
 <div class="feed-input">
   <nz-tag nzMode="closeable" (nzOnClose)="onCloseTag()" *ngIf="file">
     <div>
@@ -9,7 +10,7 @@
     <button nz-button nzType="primary"><i nz-icon nzType="upload"></i> Photo, Video ou Audio</button>
   </nz-upload>
   <form class="feed-input-form" (ngSubmit)="send()">
-    <textarea (keydown)="onInputKeyDown($event)" (keyup)="onInputKeyUp($event)" nz-input nzAutosize class="ant-input"
+    <textarea (keydown)="onInputKeyDown($event)" (keyup)="onInputKeyUp($event,input)" (click)="onInputClick(input);" nz-input nzAutosize class="ant-input"
       name="message" #input nz-popover nzPopoverPlacement="topLeft" [nzPopoverContent]="contentTemplate"
       [nzPopoverTrigger]="null" placeholder="Rédigez un nouveau message" [ngModel]="message"
       (ngModelChange)="onMessageChanged($event)"></textarea>

@@ -2,7 +2,7 @@
   <div class="post-author-name">{{post.createdBy.username}}</div>
 
   <!-- TIPS: [ngStyle]="{'background-image': url(...) }" -->
-  <div class="post-author-photo" ></div>
+  <div class="post-author-photo" [ngStyle]="!post.createdBy.photoUrl ? {'background-color': 'white' , 'background-image' : 'none'} : {'background-image' : 'post.createdBy.photoUrl'}" ></div>
   <div class="post-date">{{post.createdAt | date:"medium"}}</div>
 
   <!-- TIPS: [ngClass]="{liked: [expression booléenne]}" -->
@@ -31,14 +31,14 @@
       </video>
     </div>
 
-    <div *ngIf="element.type === 'image' "><img style="min-height: 300px; min-width: 300px;" src="{{element.url}}" ></div>
+    <div *ngIf="element.type === 'image' "><img style="min-height: 300px; min-width: 300px;" width="600" height="300" src="{{element.url}}" ></div>
     <div *ngIf="element.type === 'youtube' ">
-      <youtube-player 
-      videoId="CXcEbr1ixEc"
-      suggestedQuality="highres" 
-      [height]="250" 
-      [width]="500">
-    </youtube-player>
+        <youtube-player 
+        videoId="CXcEbr1ixEc"
+        suggestedQuality="highres" 
+        [height]="250" 
+        [width]="500">
+      </youtube-player>
     </div>
 
   </div>

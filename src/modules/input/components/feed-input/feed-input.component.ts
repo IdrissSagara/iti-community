@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { NzPopoverComponent, NzPopoverDirective } from 'ng-zorro-antd/popover';
 import { UserService } from 'src/modules/user/services/user.service';
 import { User } from 'src/modules/user/user.model';
@@ -43,6 +44,7 @@ export class FeedInputComponent {
    * @param user The mentioned user
    */
   chooseMention(user: User) {
+
     if (this.currentMention) {
       this.message = this.message.substr(0, this.currentMention.index! + 1) + user.username + this.message.substr(this.currentMention.index! + this.currentMention[1].length + 1) + " ";
     }
@@ -110,14 +112,72 @@ export class FeedInputComponent {
 
       this.send();
     }
+
   }
 
   /**
    * InputKeyUp event handler. Use to watch arrows key press to know when to show mention list
    * @param e
    */
-  onInputKeyUp(e: KeyboardEvent) {
 
+
+  getCurrentWordSelected(currentSelected: number): string {
+    let wordCurrent = "";
+    let position = currentSelected - 1;
+    while (this.message[position] != " " && position != -1) {
+      wordCurrent = this.message[position] + wordCurrent;
+      position--;
+    }
+
+    const longText = this.message.split("").length;
+    if (currentSelected < longText) {
+      position = currentSelected;
+      while (this.message[position] != " " && currentSelected < longText) {
+        wordCurrent = wordCurrent + this.message[position];
+        position++;
+      }
+    }
+    return wordCurrent;
+  }
+
+  startMatching(word: string) {
+    if (word.length > 0) {
+      const mentionRegex = /\B\@([\w\-]+)/im;
+      const match = word.match(mentionRegex);
+
+      if (match !== null) {
+
+        const buildRegex = "\\B\\@(" + word.replace("@", "") + ")";
+        const mentionWordRegex = new RegExp(buildRegex, 'mi');
+        const matchWord = this.message.match(mentionWordRegex);
+
+        if (matchWord !== null) {
+
+          this.showMentionList(matchWord);
+          this.searchMentionedUsers(matchWord[1]);
+        }
+
+      } else {
+        this.hideMentionList();
+      }
+    }
+  }
+
+  onInputKeyUp(e: KeyboardEvent, input: any) {
+    let wordSelectionned = "";
+
+    wordSelectionned = this.getCurrentWordSelected(input.selectionStart);
+    this.startMatching(wordSelectionned);
+
+  }
+
+  onInputClick(input: any) {
+    let wordSelectionned = "";
+
+    wordSelectionned = this.getCurrentWordSelected(input.selectionStart);
+    this.startMatching(wordSelectionned);
+
+    input.focus();
   }
 
   async searchMentionedUsers(search: string) {
@@ -127,6 +187,8 @@ export class FeedInputComponent {
       this.users = await this.userService.search(search);
     }
   }
+
+
 
   /**
    * Send the input message
@@ -158,8 +220,6 @@ export class FeedInputComponent {
    */
   fireMessageSent() {
     // TODO émettre l'évènement "messageSent"
-    console.log("ajout d'un file");
-    console.log(this.file);
     this.messageSent.emit({
       message: this.message,
       file: this.file!!,

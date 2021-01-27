@@ -18,7 +18,6 @@ export class FeedComponent implements OnInit {
 
   constructor(private postService: PostService, private store: FeedStore) {
     this.posts$ = this.store.get(s => s.posts);
-    console.log(this.posts$);
     this.roomId$ = this.store.roomId$;
   }
 
