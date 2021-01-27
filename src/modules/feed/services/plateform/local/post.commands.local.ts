@@ -6,18 +6,18 @@ import { PostLocalStorage } from './post.storage';
 
 @Injectable()
 export class LocalPostCommands extends PostCommands {
+
     private storage: PostLocalStorage = new PostLocalStorage();
     constructor(private userStore: UserStore) {
         super();
     }
 
-    async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
+   /* async create(roomId: string, message: string, file?: File): Promise<{ id: string }> {
         const posts = this.storage.getValue();
         console.log(posts[roomId]);
         posts[roomId] = posts[roomId] || [];
         const post: PostData = {
             id: Math.round(Math.random() * 1000).toString(),
-            comments: [],
             roomId,
             createdAt: new Date().toISOString(),
             createdBy: this.userStore.value.user!,
@@ -32,23 +32,40 @@ export class LocalPostCommands extends PostCommands {
         return {
             id: post.id
         }
-    }
+    }*/
 
-    comment(postId: string, comment: string): Promise<void> {
-        throw new Error('Method not implemented.');
+  async create(roomId: string, message: string, file?: File): Promise<PostData> {
+    const posts = this.storage.getValue();
+    posts[roomId] = posts[roomId] || [];
+    const post: PostData = {
+      id: Math.round(Math.random() * 1000).toString(),
+      roomId,
+      createdAt: new Date().toISOString(),
+      createdBy: this.userStore.value.user!,
+      liked: false,
+      likes: 0,
+      message
     }
+    posts[roomId].push(post);
+    this.storage.setValue(posts);
+    return post;
+  }
+
 
     async like(roomId: string, postId: string, newValue: boolean): Promise<void> {
         const posts = this.storage.getValue();
-        posts[roomId] = posts[roomId] || [];
+      posts[roomId] = posts[roomId] || [];
 
-        const post = posts[roomId].find(p => p.id === postId);
-        if (!post) {
-            throw Error("Post not found");
-        }
+      const post = posts[roomId].find(p => p.id === postId);
+      if (!post) {
+        throw Error('Post not found');
+      }
 
-        post.liked = newValue;
-        this.storage.setValue(posts);
+      post.liked = newValue;
+      this.storage.setValue(posts);
     }
 
+  comment(postId: string, comment: string): Promise<void> {
+    return Promise.resolve(undefined);
+  }
 }

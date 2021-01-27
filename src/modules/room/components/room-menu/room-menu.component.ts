@@ -6,7 +6,7 @@ import { Room } from '../../room.model';
 import { RoomStore } from '../../room.store';
 import { RoomQueries } from '../../services/room.queries';
 import { RoomService } from '../../services/room.service';
-
+import { RoomSocketService } from '../../services/room.socket.service';
 @Component({
   selector: 'app-room-menu',
   templateUrl: './room-menu.component.html',
@@ -17,8 +17,10 @@ export class RoomMenuComponent implements OnInit {
 
   rooms: Room[];
 
+
   constructor(private feedStore: FeedStore, private queries: RoomQueries, private route: ActivatedRoute,
-    private roomService: RoomService, private router: Router) {
+              private roomService: RoomService, private router: Router, private roomSocketService: RoomSocketService) {
+
     this.roomId$ = feedStore.roomId$;
     this.rooms = [];
   }
@@ -50,7 +52,7 @@ export class RoomMenuComponent implements OnInit {
 
   /**
    * Methode qui rajoute un nouvel room dans la liste.
-   * @param room 
+   * @param room
    */
   RefreshRooms(room: Room) {
     this.rooms.push(room);

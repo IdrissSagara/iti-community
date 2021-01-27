@@ -2,8 +2,11 @@
 <br>
 <div class="notif">
   <div *ngFor="let notif of anyNotifications" class="notif-body">
-    {{notif.subject}}
-    <p>{{'Il ya ' + timeConversion(notif.timestamp)}}</p>
+    {{ notif.subject}}
+    <p>{{'Il y a ' + timeConversion(notif.timestamp)}}</p>
   </div>
 </div>
+
+<br>
+<button (click)="btnNotif()" class="title">click</button>
 

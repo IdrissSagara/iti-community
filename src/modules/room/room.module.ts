@@ -16,9 +16,10 @@ import { RoomStore } from './room.store';
 import { RoomService } from './services/room.service';
 import { RoomComponent } from './components/room/room.component';
 import { FeedModule } from '../feed/feed.module';
+
 import {InputModule} from '../input/input.module';
 import {RouterModule} from '@angular/router';
-
+import {RoomSocketService} from './services/room.socket.service';
 @NgModule({
   declarations: [RoomMenuComponent, RoomCreateModalComponent, RoomComponent],
   exports: [RoomMenuComponent, RoomComponent],
@@ -31,7 +32,8 @@ import {RouterModule} from '@angular/router';
     useClass: LocalRoomQueries
   },
     RoomStore,
-    RoomService
+    RoomService,
+    RoomSocketService
   ],
   imports: [
     CommonModule,

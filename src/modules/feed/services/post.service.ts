@@ -24,7 +24,7 @@ export class PostService {
             id: post.id,
             likes: 0,
             roomId,
-            comments: [],
+            // comments: [],
             createdAt: new Date().toISOString(),
             createdBy: this.userStore.value.user!,
             liked: false,
@@ -44,7 +44,11 @@ export class PostService {
 
     /**
      *  TODO appeler la méthode like sur PostCommands
+<<<<<<< HEAD
      * @param post 
+=======
+     * @param post
+>>>>>>> 469939406e85073f27275521b84e2d9331e6f730
      */
     async like(post: Post): Promise<void> {
         console.log(post.liked);
