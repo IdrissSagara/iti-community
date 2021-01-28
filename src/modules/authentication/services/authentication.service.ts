@@ -7,9 +7,9 @@ import { HttpAuthenticationCommands } from './plateform/http/authentication.comm
 @Injectable()
 export class AuthenticationService {
     constructor(
-        private commands: AuthenticationCommands,
-        private request :  HttpAuthenticationCommands,
-        private readonly store: AuthenticationStore,
+      private commands: AuthenticationCommands,
+      private request: HttpAuthenticationCommands,
+      private readonly store: AuthenticationStore,
     ) {
     }
 
