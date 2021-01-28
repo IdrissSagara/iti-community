@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
       //=========================================================================================================================================
       await this.authService.authenticate(this.model.username, this.model.password)
         .then(Response => {
+          console.log(Response);
           var res = Response as LoginCommandResult;
           if (res.success) {
             this.router.navigate(['/']);

@@ -28,6 +28,7 @@ import { AuthenticationInterceptor } from './authentication.interceptor';
       useClass: LocalAuthenticationCommands
     },
     AuthenticationService,
+    HttpAuthenticationCommands,
     AuthenticationStore,
     AuthenticationStorage,
   ],

@@ -33,7 +33,10 @@ import { NotificationModule } from '../notification/notification.module';
     {
       provide: UserCommands,
       useClass: LocalUserCommands
-    }
+    },
+    HttpUserQueries,
+    HttpUserCommands
+
   ],
   imports: [
     CommonModule,

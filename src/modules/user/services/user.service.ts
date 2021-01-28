@@ -9,7 +9,8 @@ export class UserService {
   constructor(
     private queries: UserQueries,
     private commands: UserCommands,
-    private store: UserStore
+    private store: UserStore,
+    
   ) {
   }
 
