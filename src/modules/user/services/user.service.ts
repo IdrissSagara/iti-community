@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { User } from '../user.model';
-import { UserStore } from '../user.store';
-import { HttpUserCommands } from './platform/http/user.commands.http';
-import { HttpUserQueries } from './platform/http/user.queries.http';
-import { UserCommands } from './user.commands';
-import { UserQueries } from './user.queries';
+import {Injectable} from '@angular/core';
+import {User} from '../user.model';
+import {UserStore} from '../user.store';
+import {UserCommands} from './user.commands';
+import {UserQueries} from './user.queries';
+import {HttpUserQueries} from './platform/http/user.queries.http';
+import {HttpUserCommands} from './platform/http/user.commands.http';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,6 @@ export class UserService {
     private queries: HttpUserQueries,
     private commands: HttpUserCommands,
     private store: UserStore,
-    
   ) {
   }
 

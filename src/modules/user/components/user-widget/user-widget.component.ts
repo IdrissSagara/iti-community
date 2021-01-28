@@ -28,7 +28,6 @@ export class UserWidgetComponent implements OnInit {
     private router: Router,
     private modalService: NzModalService,
     private notificationStore: NotificationStore,
-    private userService: UserService,
     private store: UserStore,
     private sanitizer: DomSanitizer
   ) {
@@ -50,7 +49,6 @@ export class UserWidgetComponent implements OnInit {
   ngOnInit(): void {
     this.user$.subscribe(res => {
       this.user = res;
-      console.log('user--info', this.user);
     });
   }
 
@@ -61,7 +59,9 @@ export class UserWidgetComponent implements OnInit {
       nzOkText: "Déconnexion",
       nzOnOk: () => {
         // TODO logout puis rediriger vers "/splash/login"
-        this.router.navigate(["/splash/login"]);
+        this.authService.logout().then(res => {
+          this.router.navigate(['/splash/login']);
+        });
       }
     });
   }

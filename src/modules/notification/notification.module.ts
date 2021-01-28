@@ -18,13 +18,11 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     }, {
       provide: NotificationCommands,
       useClass: HttpNotificationCommands
-    }, NotificationSocketService],
+    }, NotificationSocketService, HttpNotificationQueries, HttpNotificationCommands],
   imports: [
     CommonModule,
     NzMessageModule
   ]
-
-
 
 
 })
