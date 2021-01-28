@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '../services/notification.service';
-import {AnyNotification} from '../notification.model';
+import {AnyNotification, AppNotification, PostLikedNotification} from '../notification.model';
 import {NotificationStore} from '../notification.store';
 import {NotificationQueries} from '../services/notification.queries';
 import {LocalNotificationQueries} from '../services/platform/local/notification.queries.local';
+import {HttpNotificationQueries} from '../services/platform/http/notification.queries.http';
 
 @Component({
   selector: 'app-notification-bar',
@@ -12,9 +13,10 @@ import {LocalNotificationQueries} from '../services/platform/local/notification.
 })
 export class NotificationBarComponent implements OnInit {
   anyNotifications: AnyNotification[];
+  postLikedNotif: PostLikedNotification[];
 
   constructor(private notifService: NotificationService, private notifStore: NotificationStore,
-              private notifQueries: NotificationQueries) {
+              private notifQueries: HttpNotificationQueries) {
 
   }
 
@@ -28,7 +30,7 @@ export class NotificationBarComponent implements OnInit {
       this.anyNotifications = res;
       console.log('res', res);
     });
-    console.log('any Notif', this.anyNotifications);
+    // console.log('any Notif', this.anyNotifications);
   }
 
   timeConversion(millisec: any) {

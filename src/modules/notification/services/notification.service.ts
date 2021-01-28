@@ -1,15 +1,16 @@
-import { Injectable } from "@angular/core";
-import { NotificationStore } from "../notification.store";
-import { NotificationCommands } from "./notification.commands";
-import { NotificationQueries } from "./notification.queries";
+import {Injectable} from '@angular/core';
+import {NotificationStore} from '../notification.store';
+import {NotificationCommands} from './notification.commands';
+import {NotificationQueries} from './notification.queries';
+import {HttpNotificationQueries} from './platform/http/notification.queries.http';
+import {HttpNotificationCommands} from './platform/http/notification.commands.http';
 
 @Injectable()
 export class NotificationService {
   constructor(
     private store: NotificationStore,
-    private notificationQueries: NotificationQueries,
-    private notificationCommands: NotificationCommands
-
+    private notificationQueries: HttpNotificationQueries,
+    private notificationCommands: HttpNotificationCommands,
   ) {
   }
 
