@@ -2,7 +2,7 @@
   <div class="post-author-name">{{post.createdBy.username}}</div>
 
   <!-- TIPS: [ngStyle]="{'background-image': url(...) }" -->
-  <div class="post-author-photo" [ngStyle]="!post.createdBy.photoUrl ? {'background-color': 'white' , 'background-image' : 'none'} : {'background-image' : 'post.createdBy.photoUrl'}" ></div>
+  <div class="post-author-photo" [ngStyle]="!post.createdBy.photoUrl ? {'background-color': 'white' , 'background-image' : 'none'} : {'background-image' : 'url('+post.createdBy.photoUrl+')'}" ></div>
   <div class="post-date">{{post.createdAt | date:"medium"}}</div>
 
   <!-- TIPS: [ngClass]="{liked: [expression booléenne]}" -->

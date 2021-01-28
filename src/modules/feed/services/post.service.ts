@@ -3,14 +3,16 @@ import { PageModel } from 'src/modules/common/Pagination';
 import { FeedStore } from 'src/modules/feed/feed.store';
 import { UserStore } from 'src/modules/user/user.store';
 import { Post, PostData } from '../post.model';
+import { HttpPostCommands } from './plateform/http/post.commands.http';
+import { HttpPostQueries } from './plateform/http/post.queries.http';
 import { PostCommands } from './post.commands';
 import { PostMapper } from './post.mapper';
 import { PostQueries } from './post.queries';
 
 @Injectable()
 export class PostService {
-    constructor(private commands: PostCommands,
-        private queries: PostQueries,
+    constructor(private commands: HttpPostCommands,
+        private queries: HttpPostQueries,
         private userStore: UserStore,
         private mapper: PostMapper,
         private store: FeedStore) {
@@ -44,16 +46,11 @@ export class PostService {
 
     /**
      *  TODO appeler la méthode like sur PostCommands
-<<<<<<< HEAD
      * @param post 
-=======
-     * @param post
->>>>>>> 469939406e85073f27275521b84e2d9331e6f730
      */
     async like(post: Post): Promise<void> {
         console.log(post.liked);
-        await this.commands.like(post.roomId, post.id, post.liked);
-
+        await this.commands.like(post.roomId, post.id);
     }
 
 

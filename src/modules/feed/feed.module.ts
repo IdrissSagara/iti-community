@@ -31,7 +31,10 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
   }, {
       provide: PostQueries,
       useClass: LocalPostQueries
-    }],
+    }, HttpPostCommands,
+    HttpPostQueries,
+    FeedSocketService
+  ],
   imports: [
     CommonModule,
     UserModule,

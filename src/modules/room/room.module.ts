@@ -20,6 +20,8 @@ import { FeedModule } from '../feed/feed.module';
 import {InputModule} from '../input/input.module';
 import {RouterModule} from '@angular/router';
 import {RoomSocketService} from './services/room.socket.service';
+import { HttpRoomCommands } from './services/plateform/http/room.commands.http';
+import { HttpRoomQueries } from './services/plateform/http/room.queries.http';
 @NgModule({
   declarations: [RoomMenuComponent, RoomCreateModalComponent, RoomComponent],
   exports: [RoomMenuComponent, RoomComponent],
@@ -33,7 +35,9 @@ import {RoomSocketService} from './services/room.socket.service';
   },
     RoomStore,
     RoomService,
-    RoomSocketService
+    RoomSocketService,
+    HttpRoomCommands,
+    HttpRoomQueries
   ],
   imports: [
     CommonModule,

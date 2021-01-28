@@ -8,14 +8,15 @@ import { HttpAuthenticationCommands } from './plateform/http/authentication.comm
 export class AuthenticationService {
     constructor(
         private commands: AuthenticationCommands,
-        private request :  HttpAuthenticationCommands,
+        private request: HttpAuthenticationCommands,
         private readonly store: AuthenticationStore,
     ) {
     }
 
-    async authenticate(username: string, password: string) {
+     async authenticate(username: string, password: string) {
         //const loginResult = await this.commands.login(username, password);
-        const loginResult = await this.request.login(username, password);
+        const loginResult =  await this.request.login(username, password);
+
         console.log(loginResult);
         if (!loginResult.success) {
             return Bad(loginResult.reason);

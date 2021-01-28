@@ -51,6 +51,7 @@ export class UserRegistrationComponent implements OnInit {
     // ===================================================================
     this.user.exists(this.model.username)
       .then(reponse => {
+        console.log(reponse);
         if (reponse) {
           this.nzMessageService.error('Cet utilisateur existe déjà.');
           return;
