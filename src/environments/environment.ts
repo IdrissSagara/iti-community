@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  serverBaseUrl: 'https://262b3821bb81.ngrok.io'
+  // serverBaseUrl: 'https://262b3821bb81.ngrok.io'
+  serverBaseUrl: 'http://localhost:3000'
 };
 
 /*
