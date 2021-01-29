@@ -36,9 +36,9 @@ export class NotificationBarComponent implements OnInit {
   timeConversion(millisec: any) {
     const date = new Date(millisec * 1000);
     const hours = date.getHours();
-    const minutes = '0' + date.getMinutes();
-    const seconds = '0' + date.getSeconds();
-    const formattedTime = hours + 'h';
+    const minutes = '' + date.getMinutes();
+    const seconds = '' + date.getSeconds();
+    const formattedTime = hours + 'h:' + minutes + 'm';
     return formattedTime;
   }
 }

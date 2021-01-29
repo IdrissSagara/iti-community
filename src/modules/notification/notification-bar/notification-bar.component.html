@@ -2,8 +2,18 @@
 <br>
 <div class="notif">
   <div *ngFor="let notif of anyNotifications" class="notif-body">
-    {{ notif.subject}}
-    <p>{{'Il y a ' + timeConversion(notif.timestamp)}}</p>
+    <div *ngIf="notif.subject === 'new_user'">
+      {{'nouvel utilisateur'}} <b>{{notif.payload.user.username}}</b>
+      <p>{{'Créer a ' + timeConversion(notif.timestamp)}}</p>
+    </div>
+    <div *ngIf="notif.subject === 'room_added'">
+      {{'nouvel room ajouté' + ' par '}} <b>{{notif.payload.user.username}}</b>
+      <p>{{'à ' + timeConversion(notif.timestamp)}}</p>
+    </div>
+    <div *ngIf="notif.subject === 'post_liked'">
+      <b>{{notif.payload.user.username}}</b> {{' à liké votre post'}}
+      <p>{{'à ' + timeConversion(notif.timestamp)}}</p>
+    </div>
   </div>
 </div>
 
