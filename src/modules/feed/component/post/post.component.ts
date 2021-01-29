@@ -24,7 +24,6 @@ export class PostComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 //    console.log(this.post);
     this.contentMessage = this.link(this.post.message.text.content);
-    console.log(this.post.createdBy.photoUrl);
   }
 
   ngAfterViewInit() {

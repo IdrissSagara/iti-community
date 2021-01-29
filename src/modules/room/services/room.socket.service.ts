@@ -10,6 +10,7 @@ export class RoomSocketService {
   }
 
   onNewRoom(callback: (room: Room) => any) {
+    console.log("WS ::  new room");
     if (this.subscription) {
       this.socketTopic.unsubscribe("room", this.subscription);
     }

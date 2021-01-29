@@ -16,9 +16,10 @@ export class FeedComponent implements OnInit {
 
   posts$: Observable<Post[]>;
 
-  constructor(private postService: PostService, private store: FeedStore, private socketService: FeedSocketService) {
+  constructor(private postService: PostService, 
+    private store: FeedStore, 
+    private socketService: FeedSocketService) {
     this.posts$ = this.store.get(s => s.posts);
-    console.log(this.posts$);
     this.roomId$ = this.store.roomId$;
   }
 

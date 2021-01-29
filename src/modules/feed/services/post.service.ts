@@ -19,9 +19,9 @@ export class PostService {
     }
 
     async create(roomId: string, message: string, file?: File): Promise<PostData> {
-        console.log(file);
+        
         const post = await this.commands.create(roomId, message, file);
-        console.log(post);
+        
         return {
             id: post.id,
             likes: 0,
@@ -49,7 +49,7 @@ export class PostService {
      * @param post 
      */
     async like(post: Post): Promise<void> {
-        console.log(post.liked);
+        
         await this.commands.like(post.roomId, post.id);
     }
 

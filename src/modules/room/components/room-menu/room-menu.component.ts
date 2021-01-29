@@ -19,8 +19,12 @@ export class RoomMenuComponent implements OnInit {
   rooms: Room[];
 
 
-  constructor(private feedStore: FeedStore, private queries: HttpRoomQueries, private route: ActivatedRoute,
-    private roomService: RoomService, private router: Router, private roomSocketService: RoomSocketService) {
+  constructor(private feedStore: FeedStore, 
+    private queries: HttpRoomQueries, 
+    private route: ActivatedRoute,
+    private roomService: RoomService,
+     private router: Router, 
+     private roomSocketService: RoomSocketService) {
 
     this.roomId$ = feedStore.roomId$;
     this.rooms = [];
@@ -30,9 +34,14 @@ export class RoomMenuComponent implements OnInit {
     //===================================================
     // On récupere le dernier room visiter.
     //===================================================
-    let lastRoom = localStorage.getItem('LastRoomSee');
     this.rooms = await this.queries.getAll();
-    console.log(this.rooms);
+
+    this.roomSocketService.onNewRoom(newRoom =>{
+      this.rooms.push(newRoom);
+    });
+
+
+    let lastRoom = localStorage.getItem('LastRoomSee');
     var roomSee = this.rooms.find(w => w.id === lastRoom);
 
     if (roomSee == undefined) {

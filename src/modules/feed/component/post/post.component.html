@@ -34,7 +34,7 @@
     <div *ngIf="element.type === 'image' "><img style="min-height: 300px; min-width: 300px;" width="600" height="300" src="{{element.url}}" ></div>
     <div *ngIf="element.type === 'youtube' ">
         <youtube-player 
-        videoId="{{elemnt.videoId}}"
+        videoId="{{element.videoId}}"
         suggestedQuality="highres" 
         [height]="250" 
         [width]="500">

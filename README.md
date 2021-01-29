@@ -153,7 +153,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
 ### Level II
 8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations) - √
-9. Insérer les nouveaux posts reçues via WebSocket 
+9. Insérer les nouveaux posts reçues via WebSocket  - √
 10. Pouvoir uploader des photos, vidéos et audios - √
 
 ### Level III
