@@ -173,12 +173,12 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
 ### Level I
 
-1. Au clic sur le bouton de notifications, afficher ou masquer une barre de notification
-2. Dans la barre de notifications, lister toutes les notifications reçues avec : un message décrivant la notification, la photo de l'utilisateur concerné et la date
-3. Afficher sur fond vert les notifications non lues
+1. Au clic sur le bouton de notifications, afficher ou masquer une barre de notification  - √
+2. Dans la barre de notifications, lister toutes les notifications reçues avec : un message décrivant la notification, la photo de l'utilisateur concerné et la date - √
+3. Afficher sur fond vert les notifications non lues - √
 
 ### Level II
-4. Afficher les nouvelles notifications reçues dans la [popup de notification](https://ng.ant.design/components/notification/en)
+4. Afficher les nouvelles notifications reçues dans la [popup de notification](https://ng.ant.design/components/notification/en) - √
 
 ### Level III
 5.  Créer un service permettant de poster des [notifications web](https://developer.mozilla.org/fr/docs/Web/API/notification/Using_Web_Notifications)

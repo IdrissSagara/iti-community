@@ -19,12 +19,12 @@ export class RoomMenuComponent implements OnInit {
   rooms: Room[];
 
 
-  constructor(private feedStore: FeedStore, 
-    private queries: HttpRoomQueries, 
+  constructor(private feedStore: FeedStore,
+    private queries: HttpRoomQueries,
     private route: ActivatedRoute,
     private roomService: RoomService,
-     private router: Router, 
-     private roomSocketService: RoomSocketService) {
+    private router: Router,
+    private roomSocketService: RoomSocketService) {
 
     this.roomId$ = feedStore.roomId$;
     this.rooms = [];
@@ -36,8 +36,12 @@ export class RoomMenuComponent implements OnInit {
     //===================================================
     this.rooms = await this.queries.getAll();
 
-    this.roomSocketService.onNewRoom(newRoom =>{
-      this.rooms.push(newRoom);
+    this.roomSocketService.onNewRoom(newRoom => {
+     
+      if (!this.rooms.some(x => x.id == newRoom.id)) {
+        this.rooms.push(newRoom);
+      }
+
     });
 
 
@@ -65,7 +69,9 @@ export class RoomMenuComponent implements OnInit {
    * @param room
    */
   RefreshRooms(room: Room) {
-    this.rooms.push(room);
+    if (!this.rooms.some(x => x.id == room.id)) {
+      this.rooms.push(room);
+    }
   }
 
 

@@ -1,22 +1,24 @@
-<div class="title">Notifications</div>
-<br>
-<div class="notif">
-  <div *ngFor="let notif of anyNotifications" class="notif-body">
-    <div *ngIf="notif.subject === 'new_user'">
-      {{'nouvel utilisateur'}} <b>{{notif.payload.user.username}}</b>
-      <p>{{'Créer a ' + timeConversion(notif.timestamp)}}</p>
-    </div>
-    <div *ngIf="notif.subject === 'room_added'">
-      {{'nouvel room ajouté' + ' par '}} <b>{{notif.payload.user.username}}</b>
-      <p>{{'à ' + timeConversion(notif.timestamp)}}</p>
-    </div>
-    <div *ngIf="notif.subject === 'post_liked'">
-      <b>{{notif.payload.user.username}}</b> {{' à liké votre post'}}
-      <p>{{'à ' + timeConversion(notif.timestamp)}}</p>
+<div style="width: 100%;padding: 2%;">
+  <div class="title">Notifications</div>
+  <br>
+  <div class="notif">
+    <div *ngFor="let notif of anyNotifications" class="notif-body"
+      [ngStyle]="notif.viewedAt !== null ? {'background-color':'white', 'color' : 'black'} : {'background-color' : 'green' , 'color' : 'white'}">
+      <div class="notification-author-photo"
+        [ngStyle]="!notif.payload.user.photoLocation ? {'background-color': 'white' , 'background-image' : 'none'} : {'background-image' : 'url('+notif.payload.user.photoLocation+')'}">
+      </div>
+      <div class="notif-date">{{notif.timestamp | date:"medium" }}</div>
+      <div class="notif-description">
+        <div *ngIf="notif.subject === 'new_user'">
+          {{'nouvel utilisateur'}} <b>{{notif.payload.user.username}}</b>
+        </div>
+        <div *ngIf="notif.subject === 'room_added'">
+          {{'nouvel room ajouté' + ' par '}} <b>{{notif.payload.user.username}}</b>
+        </div>
+        <div *ngIf="notif.subject === 'post_liked'">
+          <b>{{notif.payload.user.username}}</b> {{' à liké votre post'}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<br>
-<button (click)="btnNotif()" class="title">click</button>
-
